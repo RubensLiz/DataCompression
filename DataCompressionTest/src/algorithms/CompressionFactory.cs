@@ -1,17 +1,17 @@
 ﻿namespace DataCompressionTest.src.algorithms
 {
-    public enum CompressType
+    public enum CompressionType
     {
         LZSS = 0
     }
 
     public static class CompressionFactory
     {
-        public static CompressionIF CreateAlgorithm(CompressType type)
+        public static CompressionIF CreateAlgorithm(CompressionType type)
         {
             switch (type)
             {
-                case CompressType.LZSS:
+                case CompressionType.LZSS:
                     return new LzssCompression();
                 default:
                     return null;

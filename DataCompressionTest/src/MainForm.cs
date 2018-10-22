@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataCompressionTest.src.algorithms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,11 +16,17 @@ namespace DataCompressionTest
     {
         private byte[] dataBytes;
         private string fileName;
+        private BindingList<string> algorithmTypeList;
+        CompressionIF ca;
 
         public MainForm()
         {
             InitializeComponent();
             this.textBoxDirectoryPath.Text = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\";
+
+            this.algorithmTypeList = new BindingList<string> { "LZSS" };
+
+            this.comboBoxAlgorithmType.DataSource = algorithmTypeList;
         }
 
         private void buttonInputFile_Click(object sender, EventArgs e)
@@ -71,12 +78,18 @@ namespace DataCompressionTest
 
         private void buttonCode_Click(object sender, EventArgs e)
         {
-
+            textBoxOriginalSize.Text = Convert.ToUInt32(dataBytes.Length).ToString();
+            CompressionType t = (CompressionType)algorithmTypeList.IndexOf(comboBoxAlgorithmType.SelectedItem.ToString());
+            this.ca = CompressionFactory.CreateAlgorithm(t);
+            textBoxNewSize.Text = this.ca.Compress(textBoxFilePath.Text, this.textBoxDirectoryPath.Text).ToString();
         }
 
         private void buttonDecode_Click(object sender, EventArgs e)
         {
-
+            textBoxOriginalSize.Text = Convert.ToUInt32(dataBytes.Length).ToString();
+            CompressionType t = (CompressionType)algorithmTypeList.IndexOf(comboBoxAlgorithmType.SelectedItem.ToString());
+            this.ca = CompressionFactory.CreateAlgorithm(t);
+            textBoxNewSize.Text = this.ca.Decompress(textBoxFilePath.Text, this.textBoxDirectoryPath.Text + fileName + ".decomp").ToString();
         }
     }
 }

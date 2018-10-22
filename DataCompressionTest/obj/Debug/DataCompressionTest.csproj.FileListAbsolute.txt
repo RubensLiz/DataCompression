@@ -1,0 +1,10 @@
+C:\Projetos\DataCompression\DataCompressionTest\bin\Debug\DataCompressionTest.exe.config
+C:\Projetos\DataCompression\DataCompressionTest\bin\Debug\DataCompressionTest.exe
+C:\Projetos\DataCompression\DataCompressionTest\bin\Debug\DataCompressionTest.pdb
+C:\Projetos\DataCompression\DataCompressionTest\obj\Debug\DataCompressionTest.csprojAssemblyReference.cache
+C:\Projetos\DataCompression\DataCompressionTest\obj\Debug\DataCompressionTest.MainForm.resources
+C:\Projetos\DataCompression\DataCompressionTest\obj\Debug\DataCompressionTest.Properties.Resources.resources
+C:\Projetos\DataCompression\DataCompressionTest\obj\Debug\DataCompressionTest.csproj.GenerateResource.cache
+C:\Projetos\DataCompression\DataCompressionTest\obj\Debug\DataCompressionTest.csproj.CoreCompileInputs.cache
+C:\Projetos\DataCompression\DataCompressionTest\obj\Debug\DataCompressionTest.exe
+C:\Projetos\DataCompression\DataCompressionTest\obj\Debug\DataCompressionTest.pdb
