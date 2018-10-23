@@ -81,6 +81,7 @@ namespace DataCompressionTest.src.algorithms
 
             putbit1();
             mask = 256;
+
             while ((mask >>= 1) != 0)
             {
                 if ((c & mask) != 0) putbit1();
@@ -100,6 +101,7 @@ namespace DataCompressionTest.src.algorithms
                 if ((x & mask) != 0) putbit1();
                 else putbit0();
             }
+
             mask = (uint)(1 << EJ);
 
             while ((mask >>= 1) != 0)
@@ -124,8 +126,11 @@ namespace DataCompressionTest.src.algorithms
 
                     maskStatic = 128;
                 }
+
                 x <<= 1;
+
                 if ((bufStatic & maskStatic) != 0) x++;
+
                 maskStatic >>= 1;
             }
             return x;
@@ -140,6 +145,7 @@ namespace DataCompressionTest.src.algorithms
             int i, c = 0;
 
             for (i = 0; i < N - F; i++) buffer[i] = 0;
+
             for (i = (int)(N - F); i < N * 2; i++)
             {
                 c = inFileStream.ReadByte();
@@ -155,23 +161,30 @@ namespace DataCompressionTest.src.algorithms
             {
                 f1 = (F <= bufferend - r) ? F : bufferend - r;
                 x = 0; y = 1; c = buffer[r];
+
                 for (i = (int)(r - 1); i >= s; i--)
                     if (buffer[i] == (byte)c)
                     {
                         for (j = 1; j < f1; j++)
                             if (buffer[i + j] != buffer[r + j]) break;
+
                         if (j > y)
                         {
                             x = (uint)i; y = j;
                         }
                     }
+
                 if (y <= P) { y = 1; output1((uint)c); }
                 else output2(x & (N - 1), y - 2);
+
                 r += y; s += y;
+
                 if (r >= N * 2 - F)
                 {
                     for (i = 0; i < N; i++) buffer[i] = buffer[i + N];
+
                     bufferend -= N; r -= N; s -= N;
+
                     while (bufferend < N * 2)
                     {
                         c = inFileStream.ReadByte();
@@ -182,6 +195,7 @@ namespace DataCompressionTest.src.algorithms
                     }
                 }
             }
+
             flush_bit_buffer();
 
             outFileStream.Close();
@@ -199,12 +213,15 @@ namespace DataCompressionTest.src.algorithms
             int i, j, c;
 
             for (i = 0; i < N - F; i++) buffer[i] = 0;
+
             r = N - F;
+
             while ((c = getbit(1)) != -1)
             {
                 if (c != 0)
                 {
                     if ((c = getbit(8)) == -1) break;
+
                     outFileStream.WriteByte((byte)c);
                     buffer[r++] = (byte)c;
                     r &= (N - 1);
@@ -213,6 +230,7 @@ namespace DataCompressionTest.src.algorithms
                 {
                     i = getbit(EI);
                     if (i == -1) break;
+
                     j = getbit(EJ);
                     if (j == -1) break;
 
