@@ -1,16 +1,25 @@
 ﻿using System.IO;
 
+/*
+   Original code by Haruhiko Okumura, 4/6/1989.
+   12-2-404 Green Heights, 580 Nagasawa, Yokosuka 239, Japan.
+   http://oku.edu.mie-u.ac.jp/~okumura/compression/lzss.c
+
+   Modified for use in C# by Rubens Vicente de Liz Bomer.
+
+   Use, distribute, and modify this code freely.
+*/
 
 namespace DataCompressionTest.src.algorithms
 {
     class LzssCompression : CompressionIF
     {
 
-        private ushort EI = 11;  /* typically 10..13 */
+        private ushort EI = 11; /* typically 10..13 */
         private ushort EJ = 4;  /* typically 4..5 */
-        private uint P = 1; /* If match length <= P then output one character */
-        private uint N;  /* buffer size */
-        private uint F;  /* lookahead buffer size */
+        private uint P = 1;     /* If match length <= P then output one character */
+        private uint N;         /* buffer size */
+        private uint F;         /* lookahead buffer size */
 
         private int bit_buffer = 0;
         private int bit_mask = 128;
