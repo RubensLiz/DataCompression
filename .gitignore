@@ -1,4 +1,3 @@
 /.vs
 /DataCompressionTest/obj
-/DataCompressionTest/bin/Debug
-/DataCompressionTest/bin/Release/
+/DataCompressionTest/bin
